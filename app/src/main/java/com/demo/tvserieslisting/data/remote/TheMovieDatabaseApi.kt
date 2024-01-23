@@ -5,20 +5,28 @@ import com.demo.tvserieslisting.data.remote.dto.tvdetails.TvShowDetailsDto
 import com.demo.tvserieslisting.data.remote.dto.tvlist.TvSeriesDto
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface TheMovieDatabaseApi {
 
-    @GET("search/tv?api_key=${Constants.API_KEY}&query={name}&page={page}")
+    @GET("search/tv")
     suspend fun searchTvShowsByName(
-        @Path("name") name : String,
-        @Path("page") page : Int
+        @Query("query") query : String,
+        @Query("page") page : Int,
+        @Query("api_key") api : String = Constants.API_KEY
     ) : TvSeriesDto
 
-    @GET("tv/popular?api_key=${Constants.API_KEY}&page={page}")
-    suspend fun getPopularTvShows(@Path("page") page: Int) : TvSeriesDto
+    @GET("tv/popular")
+    suspend fun getPopularTvShows(
+        @Query("page") page: Int,
+        @Query("api_key") api : String = Constants.API_KEY
+        ) : TvSeriesDto
 
-    @GET("tv/{seriesId}?api_key=${Constants.API_KEY}")
-    suspend fun getTVShowById(@Path("seriesId") seriesId : String) : TvShowDetailsDto
+    @GET("tv/{seriesId}")
+    suspend fun getTVShowById(
+        @Path("seriesId") seriesId : String,
+        @Query("api_key") api : String = Constants.API_KEY
+        ) : TvShowDetailsDto
 
 }

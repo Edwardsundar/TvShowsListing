@@ -7,16 +7,16 @@ import androidx.room.TypeConverters
 
 data class TvSeriesEntity(
     val id: Int,
-    val adult: Boolean,
-    val backdropPath: String,
-    val firstAirDate: String,
-    val name: String,
+    val adult: Boolean?,
+    val backdropPath: String?,
+    val firstAirDate: String?,
+    val name: String?,
     val originCountry: List<String>,
-    val originalLanguage: String,
-    val overview: String,
-    val popularity: Double,
-    val posterPath: String,
-    val voteAverage: Double,
+    val originalLanguage: String?,
+    val overview: String?,
+    val popularity: Double?,
+    val posterPath: String?,
+    val voteAverage: Double?,
     val voteCount: Int
 )
 

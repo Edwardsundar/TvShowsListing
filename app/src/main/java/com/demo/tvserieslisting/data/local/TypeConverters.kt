@@ -2,6 +2,8 @@ package com.demo.tvserieslisting.data.local
 
 import androidx.room.TypeConverter
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
+import com.demo.tvserieslisting.domain.module.Creator
+import com.demo.tvserieslisting.domain.module.Network
 import com.demo.tvserieslisting.domain.module.ProductionCompany
 import com.demo.tvserieslisting.domain.module.Season
 import com.google.gson.Gson
@@ -50,6 +52,35 @@ class SeasonListConverter {
         val gson = Gson()
         val type = object : TypeToken<List<Season>>() {}.type
         return gson.fromJson(season, type)
+    }
+}
+
+class NetworkConverter{
+    @TypeConverter
+    fun fromNetwork(networks : List<Network>) : String {
+        val gson = Gson()
+        return gson.toJson(networks)
+    }
+
+    @TypeConverter
+    fun toNetwork(networks : String) : List<Network> {
+        val gson = Gson()
+        val type = object : TypeToken<List<Network>>() {}.type
+        return gson.fromJson(networks, type)
+    }
+}
+
+class CreatorConverter{
+    @TypeConverter
+    fun fromCreators(creators : List<Creator>) : String {
+        val gson = Gson()
+        return gson.toJson(creators)
+    }
+    @TypeConverter
+    fun toCreators(creators : String): List<Creator> {
+        val gson = Gson()
+        val type = object : TypeToken<List<Creator>>() {}.type
+        return gson.fromJson(creators, type)
     }
 }
 

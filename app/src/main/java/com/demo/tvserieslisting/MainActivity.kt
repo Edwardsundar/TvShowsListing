@@ -10,6 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.demo.tvserieslisting.common.Constants
+import com.demo.tvserieslisting.presentation.Navigation
+import com.demo.tvserieslisting.presentation.details.TvShowDetailsScreen
+import com.demo.tvserieslisting.presentation.listing.TvShowListingScreen
 import com.demo.tvserieslisting.ui.theme.TvSeriesListingTheme
 import com.google.gson.internal.GsonBuildConfig
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +28,20 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TvSeriesListingTheme {
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = Navigation.TvShowsListingScreen.route
+                ) {
+                    composable(route = Navigation.TvShowsListingScreen.route) {
+                        TvShowListingScreen(navController)
+                    }
+                    composable(
+                        route = Navigation.TvShowDetailScreen.route + "/{${Constants.TV_SHOW_Id}}"
+                    ) {
+                        TvShowDetailsScreen()
+                    }
+                }
 
             }
         }

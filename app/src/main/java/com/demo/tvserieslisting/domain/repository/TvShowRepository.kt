@@ -7,4 +7,6 @@ interface TvShowRepository {
     suspend fun getLocalStoredTvShow(id : Int) : TvShowDetails?
 
     suspend fun getRemoteStoredTvShow(id : Int) : TvShowDetails
+
+    suspend fun insertTvShowDetails( tvShowDetails: TvShowDetails )
 }

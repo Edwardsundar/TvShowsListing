@@ -23,4 +23,9 @@ class TvShowRepositoryImpl @Inject constructor(
         return show.toTvShowDetailsEntity().toTvShowDetails()
     }
 
+    override suspend fun insertTvShowDetails(tvShowDetails: TvShowDetails) {
+        tvShowDetailsDao.upsertTvShowDetails(
+            tvShowDetails.toTvShowDetailsEntity()
+        )
+    }
 }

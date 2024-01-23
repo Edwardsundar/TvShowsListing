@@ -11,13 +11,15 @@ import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 
 @Database(
     entities = [TvSeriesListEntity::class , TvShowDetailsEntity::class],
-    version = 1
+    version = 4
 )
 @TypeConverters(
     TvSeriesEntityConverter::class,
     ProductionCompanyConverter::class,
     SeasonListConverter::class,
-    StringListConverter::class
+    StringListConverter::class,
+    NetworkConverter::class,
+    CreatorConverter::class
 )
 abstract class TvSeriesDatabase : RoomDatabase() {
 

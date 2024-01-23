@@ -22,6 +22,7 @@ class TvShowDetailsUseCase @Inject constructor(
 
             if (tvShowDetails == null){
                 tvShowDetails = repository.getRemoteStoredTvShow(id)
+                repository.insertTvShowDetails(tvShowDetails)
             }
 
             emit(Resource.Success(tvShowDetails))

@@ -11,7 +11,7 @@ interface TvShowDetailsDao {
     suspend fun upsertTvShowDetails( tvShowDetailsEntity: TvShowDetailsEntity )
 
     @Query("SELECT * FROM tvshowdetailsentity WHERE id = :id")
-    fun getTvShowById(id : Int) : TvShowDetailsEntity?
+    suspend fun getTvShowById(id : Int) : TvShowDetailsEntity?
 
     @Query("DELETE FROM tvshowdetailsentity")
     suspend fun deleteAllTvShowsDetails()

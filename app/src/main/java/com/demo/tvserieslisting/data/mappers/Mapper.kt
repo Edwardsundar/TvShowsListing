@@ -3,13 +3,14 @@ package com.demo.tvserieslisting.data.mappers
 import com.demo.tvserieslisting.data.local.tvdetails.TvShowDetailsEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
-import com.demo.tvserieslisting.data.remote.dto.tvdetails.GenreDto
+import com.demo.tvserieslisting.data.remote.dto.tvdetails.CreatorDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.NetworkDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.ProductionCompanyDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.SeasonDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.TvShowDetailsDto
 import com.demo.tvserieslisting.data.remote.dto.tvlist.ResultDto
 import com.demo.tvserieslisting.data.remote.dto.tvlist.TvSeriesDto
+import com.demo.tvserieslisting.domain.module.Creator
 import com.demo.tvserieslisting.domain.module.Network
 import com.demo.tvserieslisting.domain.module.ProductionCompany
 import com.demo.tvserieslisting.domain.module.Season
@@ -65,9 +66,9 @@ fun TvShowDetailsDto.toTvShowDetailsEntity() : TvShowDetailsEntity {
         id = id,
         adult = adult,
         backdropPath = backdrop_path,
-        createdBy = created_by,
+        createdBy = created_by.map { it.toCreator() },
         firstAirDate = first_air_date,
-        genres = genres.map { it.name },
+        genres = genres.map { it.name ?: "" },
         homepage = homepage,
         inProduction =  in_production,
         name = name,
@@ -78,14 +79,21 @@ fun TvShowDetailsDto.toTvShowDetailsEntity() : TvShowDetailsEntity {
         popularity = popularity,
         posterPath = poster_path,
         productionCompanies = production_companies.map { it.toProductionCompanies() },
-        productionCountries = production_countries.map { it.name },
+        productionCountries = production_countries.map { it.name ?: "" },
         seasons = seasons.map { it.toSeasons() },
-        spokenLanguages = spoken_languages.map { it.name },
+        spokenLanguages = spoken_languages.map { it.name  ?: ""},
         status = status,
         tagline = tagline,
         type = type,
         voteAverage = vote_average,
         voteCount = vote_count
+    )
+}
+
+fun CreatorDto.toCreator() : Creator {
+    return Creator(
+        name = name,
+        profilePath = profile_path
     )
 }
 
@@ -145,6 +153,35 @@ fun NetworkDto.toNetwork() : Network {
         logoPath = logo_path,
         name = name,
         originCountry = origin_country
+    )
+}
+
+fun TvShowDetails.toTvShowDetailsEntity() : TvShowDetailsEntity {
+    return TvShowDetailsEntity(
+        id = id,
+        adult = adult,
+        backdropPath = backdropPath,
+        createdBy = createdBy,
+        firstAirDate = firstAirDate,
+        genres = genres,
+        homepage = homepage,
+        inProduction = inProduction,
+        name = name,
+        networks = networks,
+        numberOfEpisodes = numberOfEpisodes,
+        numberOfSeasons = numberOfSeasons ,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        productionCompanies = productionCompanies,
+        productionCountries = productionCountries,
+        seasons = seasons,
+        spokenLanguages = spokenLanguages,
+        status = status,
+        tagline = tagline,
+        type = type,
+        voteAverage = voteAverage,
+        voteCount = voteCount
     )
 }
 
