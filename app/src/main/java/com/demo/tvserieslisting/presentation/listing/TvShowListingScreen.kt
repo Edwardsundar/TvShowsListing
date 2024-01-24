@@ -81,6 +81,7 @@ fun TvShowListingScreen(
     fun refresh() = refreshScope.launch {
         refreshing = true
         delay(3000)
+        listing.refresh()
         refreshing = false
     }
 
@@ -141,12 +142,17 @@ fun TvShowListingScreen(
                         .fillMaxWidth()
                         .padding(paddingValue)
                 ) {
-                    items(listing){lists->
-                        lists?.forEachIndexed { index, tvSeriesCollection ->
+                    items(
+                        items = listing,
+                        key = {
+                            it.id
+                        }
+                    ){lists->
+                        if (lists != null){
                             ShowBox(
-                                lists[index]
+                                lists
                             ){
-                                navController.navigate(Navigation.TvShowDetailScreen.route + "/${lists[index].id}")
+                                navController.navigate(Navigation.TvShowDetailScreen.route + "/${lists.id}")
                             }
                         }
                     }

@@ -4,9 +4,12 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.paging.log
 import androidx.room.withTransaction
 import com.demo.tvserieslisting.data.local.TvSeriesDatabase
+import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
+import com.demo.tvserieslisting.data.mappers.toTvSeriesEntity
 import com.demo.tvserieslisting.data.mappers.toTvSeriesListEntity
 import com.demo.tvserieslisting.data.remote.TheMovieDatabaseApi
 import retrofit2.HttpException
@@ -16,12 +19,12 @@ import java.io.IOException
 class TvSeriesRemoteMediator(
     private val tvSeriesDatabase: TvSeriesDatabase,
     private val theMovieDatabaseApi: TheMovieDatabaseApi
-): RemoteMediator<Int,TvSeriesListEntity>() {
+): RemoteMediator<Int,TvSeriesEntity>() {
 
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, TvSeriesListEntity>
+        state: PagingState<Int, TvSeriesEntity>
     ): MediatorResult {
         return try {
 
@@ -35,7 +38,9 @@ class TvSeriesRemoteMediator(
                     val lastItem = state.lastItemOrNull()
                     if (lastItem == null) 1  // there is no last item so its a first call to the api
                     else{
-                        lastItem.page + 1
+                      //val c = state.config.prefetchDistance
+                        val e = state.pages.size
+                        state.pages.size  + 1
                     }
                 }
             }
@@ -46,7 +51,7 @@ class TvSeriesRemoteMediator(
                 if (loadType == LoadType.REFRESH){
                     tvSeriesDatabase.tvSeriesListDao().clearAll()
                 }
-                val tvSeriesListEntity = tvSeriesLists.toTvSeriesListEntity()
+                val tvSeriesListEntity = tvSeriesLists.results.map { it.toTvSeriesEntity() }
                 tvSeriesDatabase.tvSeriesListDao().upsert(tvSeriesListEntity)
             }
 

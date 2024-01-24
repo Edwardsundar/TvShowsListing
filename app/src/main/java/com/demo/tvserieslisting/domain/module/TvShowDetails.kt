@@ -1,5 +1,6 @@
 package com.demo.tvserieslisting.domain.module
 
+import androidx.compose.runtime.Immutable
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.GenreDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.LastEpisodeToAirDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.NetworkDto
@@ -8,6 +9,7 @@ import com.demo.tvserieslisting.data.remote.dto.tvdetails.ProductionCountryDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.SeasonDto
 import com.demo.tvserieslisting.data.remote.dto.tvdetails.SpokenLanguageDto
 
+@Immutable
 data class TvShowDetails(
     val adult: Boolean?,
     val backdropPath: String?,

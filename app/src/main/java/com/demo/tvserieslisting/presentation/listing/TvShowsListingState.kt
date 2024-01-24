@@ -5,5 +5,5 @@ import com.demo.tvserieslisting.domain.module.TvSeriesCollection
 import kotlinx.coroutines.flow.Flow
 
 data class TvShowsListingState(
-    val tvShowList: Flow<PagingData<List<TvSeriesCollection>>>,
+    val tvShowList: Flow<PagingData<TvSeriesCollection>>,
 )

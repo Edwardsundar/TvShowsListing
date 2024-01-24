@@ -8,6 +8,7 @@ import androidx.room.Room
 import com.demo.tvserieslisting.common.Constants
 import com.demo.tvserieslisting.data.local.TvSeriesDatabase
 import com.demo.tvserieslisting.data.local.tvdetails.TvShowDetailsDao
+import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 import com.demo.tvserieslisting.data.remote.TheMovieDatabaseApi
 import com.demo.tvserieslisting.data.paging.TvSeriesRemoteMediator
@@ -55,10 +56,10 @@ object AppModule {
     fun provideTvShowPager(
         dataBase: TvSeriesDatabase,
         api: TheMovieDatabaseApi
-    ) : Pager<Int , TvSeriesListEntity> {
+    ) : Pager<Int , TvSeriesEntity> {
 
         return Pager(
-            config = PagingConfig(pageSize = 1),
+            config = PagingConfig(pageSize = 2),
             remoteMediator = TvSeriesRemoteMediator(
                 dataBase,api
             ),

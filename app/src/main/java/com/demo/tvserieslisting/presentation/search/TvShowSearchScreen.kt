@@ -12,6 +12,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.TextFieldColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -65,10 +66,13 @@ fun TvShowSearchScreen(
             modifier = Modifier
                 .padding(paddingValues)
         ){
-            items(state) {
-                it?.results?.forEachIndexed { index, tvSeries ->
+            items(state , key = {
+                it.id
+            }) {tvSeries->
+
+                if(tvSeries != null){
                     ShowBox(
-                        collection = tvSeries.toTvSeriesCollection()
+                        collection = tvSeries
                     ){
                         navController.navigate(Navigation.TvShowDetailScreen.route + "/${tvSeries.id}")
                     }

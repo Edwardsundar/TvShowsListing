@@ -1,5 +1,8 @@
 package com.demo.tvserieslisting.domain.module
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class TvSeriesCollection(
     val adult: Boolean?,
     val backdropPath: String?,

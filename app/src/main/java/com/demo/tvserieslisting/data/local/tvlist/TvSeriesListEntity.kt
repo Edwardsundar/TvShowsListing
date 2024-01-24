@@ -6,7 +6,6 @@ import androidx.room.TypeConverters
 import com.demo.tvserieslisting.data.local.TvSeriesEntityConverter
 import com.demo.tvserieslisting.data.remote.dto.tvlist.ResultDto
 
-@Entity
 data class TvSeriesListEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

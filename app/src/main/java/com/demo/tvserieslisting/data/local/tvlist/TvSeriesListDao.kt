@@ -9,11 +9,11 @@ import androidx.room.Upsert
 interface TvSeriesListDao {
 
     @Upsert
-    suspend fun upsert(tvSeriesList : TvSeriesListEntity )
+    suspend fun upsert(tvSeriesList : List<TvSeriesEntity> )
 
-    @Query("SELECT * FROM tvserieslistentity")
-    fun pagingSource() : PagingSource<Int , TvSeriesListEntity>
+    @Query("SELECT * FROM tvseriesentity")
+    fun pagingSource() : PagingSource<Int , TvSeriesEntity>
 
-    @Query("DELETE FROM tvserieslistentity")
+    @Query("DELETE FROM tvseriesentity")
     suspend fun clearAll()
 }

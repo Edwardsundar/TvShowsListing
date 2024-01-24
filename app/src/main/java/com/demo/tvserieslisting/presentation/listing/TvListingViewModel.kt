@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 import com.demo.tvserieslisting.data.mappers.toTvSeriesCollection
 import com.demo.tvserieslisting.data.mappers.toTvSeriesListEntity
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TvListingViewModel @Inject constructor(
-    pager : Pager<Int,TvSeriesListEntity>,
+    pager : Pager<Int,TvSeriesEntity>,
     private val tvShowDetailsUseCase: TvShowDetailsUseCase,
     private val api : TheMovieDatabaseApi
 ) : ViewModel() {
@@ -27,10 +28,8 @@ class TvListingViewModel @Inject constructor(
     private val tvShowPagingFlow = pager
         .flow
         .map { pagingData->
-            pagingData.map { tvSeriesListEntity->
-                tvSeriesListEntity.results.map { tvSeriesEntity ->
-                    tvSeriesEntity.toTvSeriesCollection()
-                }
+            pagingData.map {
+                it.toTvSeriesCollection()
             }
         }
         .cachedIn(viewModelScope)

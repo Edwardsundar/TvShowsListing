@@ -5,13 +5,14 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.demo.tvserieslisting.data.local.tvdetails.TvShowDetailsDao
 import com.demo.tvserieslisting.data.local.tvdetails.TvShowDetailsEntity
+import com.demo.tvserieslisting.data.local.tvlist.TvSeriesEntity
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListDao
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 
 
 @Database(
-    entities = [TvSeriesListEntity::class , TvShowDetailsEntity::class],
-    version = 4
+    entities = [TvSeriesEntity::class , TvShowDetailsEntity::class],
+    version = 5
 )
 @TypeConverters(
     TvSeriesEntityConverter::class,
