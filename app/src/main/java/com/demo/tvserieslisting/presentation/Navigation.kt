@@ -6,4 +6,6 @@ sealed class Navigation(val route : String){
 
     object TvShowDetailScreen : Navigation("Tv_Show_Details_Screen")
 
+    object TvShowsSearchScreen : Navigation("Tv_Show_Search_Screen")
+
 }

@@ -28,4 +28,8 @@ class TvShowRepositoryImpl @Inject constructor(
             tvShowDetails.toTvShowDetailsEntity()
         )
     }
+
+    override suspend fun searchTvShows(query: String) {
+
+    }
 }

@@ -10,10 +10,11 @@ import com.demo.tvserieslisting.data.local.TvSeriesDatabase
 import com.demo.tvserieslisting.data.local.tvdetails.TvShowDetailsDao
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 import com.demo.tvserieslisting.data.remote.TheMovieDatabaseApi
-import com.demo.tvserieslisting.data.remote.TvSeriesRemoteMediator
+import com.demo.tvserieslisting.data.paging.TvSeriesRemoteMediator
 import com.demo.tvserieslisting.data.repository.TvShowRepositoryImpl
 import com.demo.tvserieslisting.domain.repository.TvShowRepository
 import com.demo.tvserieslisting.domain.usecase.TvShowDetailsUseCase
+import com.demo.tvserieslisting.domain.usecase.TvShowSearchUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -91,6 +92,16 @@ object AppModule {
         repository: TvShowRepository
     ):TvShowDetailsUseCase {
         return TvShowDetailsUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTvShowSearchUseCase(
+        api : TheMovieDatabaseApi
+    ) : TvShowSearchUseCase {
+        return TvShowSearchUseCase(
+            api = api
+        )
     }
 
 

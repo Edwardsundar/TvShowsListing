@@ -2,6 +2,7 @@ package com.demo.tvserieslisting.presentation.listing
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,16 +51,12 @@ fun ShowBox(
         },
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp,
-            pressedElevation = 15.dp,
-            focusedElevation = 20.dp,
-            hoveredElevation = 30.dp,
-            draggedElevation = 40.dp
+            defaultElevation = 10.dp
         ),
-        border = BorderStroke(1.dp , MaterialTheme.colorScheme.onSurface),
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 10.dp , end = 10.dp , top = 8.dp , bottom = 8.dp)
+//            .background(MaterialTheme.colorScheme.background)
     ) {
         Row(
             modifier = Modifier
@@ -69,7 +66,6 @@ fun ShowBox(
             Box(
                 modifier = Modifier
                     .weight(1.2f)
-                    .height(200.dp)
             ){
                 AsyncImage(
                     model = (Constants.IMAGE_BASE_URL + collection.posterPath) ?: "",
@@ -96,7 +92,7 @@ fun ShowBox(
                 Text(
                     text = collection.name ?: "",
                     modifier = Modifier.fillMaxWidth(),
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.inversePrimary,
                     fontWeight = FontWeight.Bold,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
@@ -110,7 +106,7 @@ fun ShowBox(
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = collection.overview ?: "",
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.inversePrimary,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 2
                 )

@@ -9,4 +9,6 @@ interface TvShowRepository {
     suspend fun getRemoteStoredTvShow(id : Int) : TvShowDetails
 
     suspend fun insertTvShowDetails( tvShowDetails: TvShowDetails )
+
+    suspend fun searchTvShows( query : String)
 }

@@ -17,6 +17,7 @@ import com.demo.tvserieslisting.common.Constants
 import com.demo.tvserieslisting.presentation.Navigation
 import com.demo.tvserieslisting.presentation.details.TvShowDetailsScreen
 import com.demo.tvserieslisting.presentation.listing.TvShowListingScreen
+import com.demo.tvserieslisting.presentation.search.TvShowSearchScreen
 import com.demo.tvserieslisting.ui.theme.TvSeriesListingTheme
 import com.google.gson.internal.GsonBuildConfig
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,12 +35,19 @@ class MainActivity : ComponentActivity() {
                     startDestination = Navigation.TvShowsListingScreen.route
                 ) {
                     composable(route = Navigation.TvShowsListingScreen.route) {
-                        TvShowListingScreen(navController)
+                        TvShowListingScreen(
+                            navController = navController
+                        )
                     }
                     composable(
                         route = Navigation.TvShowDetailScreen.route + "/{${Constants.TV_SHOW_Id}}"
                     ) {
                         TvShowDetailsScreen()
+                    }
+                    composable(route = Navigation.TvShowsSearchScreen.route) {
+                        TvShowSearchScreen(
+                            navController = navController
+                        )
                     }
                 }
 

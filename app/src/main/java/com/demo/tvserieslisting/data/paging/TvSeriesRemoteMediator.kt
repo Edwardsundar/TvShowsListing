@@ -1,4 +1,4 @@
-package com.demo.tvserieslisting.data.remote
+package com.demo.tvserieslisting.data.paging
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -8,6 +8,7 @@ import androidx.room.withTransaction
 import com.demo.tvserieslisting.data.local.TvSeriesDatabase
 import com.demo.tvserieslisting.data.local.tvlist.TvSeriesListEntity
 import com.demo.tvserieslisting.data.mappers.toTvSeriesListEntity
+import com.demo.tvserieslisting.data.remote.TheMovieDatabaseApi
 import retrofit2.HttpException
 import java.io.IOException
 
