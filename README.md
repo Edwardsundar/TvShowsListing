@@ -32,7 +32,7 @@ search functionality, detailed views, and swipe-to-refresh.
 (https://github.com/Edwardsundar/TvShowsListing/assets/114987978/d92c1d4f-ae76-49d0-bc22-f93ccd80e1b3)
 
 - Dark Theem:
-(https://github.com/Edwardsundar/TvShowsListing/assets/114987978/2b10f06d-64f1-4710-a4d9-53cc6a1cc8c2)
+![App Screenshot](https://github.com/Edwardsundar/TvShowsListing/assets/114987978/2b10f06d-64f1-4710-a4d9-53cc6a1cc8c2)
 (https://github.com/Edwardsundar/TvShowsListing/assets/114987978/90ebcff3-d2e7-4cc4-8f3e-cd0a9f62fdea)
 (https://github.com/Edwardsundar/TvShowsListing/assets/114987978/4a0ba157-4e98-4ee5-914c-e756f695c8f2)
 (https://github.com/Edwardsundar/TvShowsListing/assets/114987978/35736a07-f7d4-40e6-adc6-0e37ba2b269a)
